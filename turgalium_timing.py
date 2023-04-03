@@ -16,7 +16,6 @@ from torch.utils.data import DataLoader, random_split
 from torchvision.datasets import CIFAR10
 from torchvision import transforms
 import numpy as np
-import time
 
 
 # Set the random seed for PyTorch and NumPy
@@ -32,13 +31,14 @@ transform = transforms.Compose([
 ])
 
 # Load CIFAR10 dataset.
-dataset = CIFAR10(root='./input/datasets/',
+dataset = CIFAR10(root='./data/',
                   train=True,
                   download=True,
                   transform=transform)
 
 # Split dataset into train and validation sets.
-train_dataset, val_dataset = random_split(dataset, [40000, 10000])
+print(f'Number of samples in dataset: len(dataset)')
+train_dataset, val_dataset = random_split(dataset, [47500, 2500])
 
 # Create dataloaders for train set.
 train_dataloader = DataLoader(train_dataset,
