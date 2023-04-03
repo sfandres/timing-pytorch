@@ -1,4 +1,4 @@
-name: lulc-conda
+name: pytorch-timing-conda
 channels:
   - plotly
   - pytorch
@@ -281,4 +281,3 @@ dependencies:
       - torchmetrics==0.11.1
       - tqdm==4.64.1
       - yarl==1.8.2
-prefix: /home/sfandres/Documents/Git/lulc/lulc-conda
