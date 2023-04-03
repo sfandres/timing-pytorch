@@ -1,2 +1,1 @@
 # pytorch-timing
-S
