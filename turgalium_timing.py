@@ -7,7 +7,7 @@ Usage: -
 
 Author: Andres J. Sanchez-Fernandez
 Email: sfandres@unex.es
-Date: 2023-04-02
+Date: 2023-04-03
 """
 
 
@@ -31,24 +31,30 @@ transform = transforms.Compose([
 ])
 
 # Load CIFAR10 dataset.
+print('---------------------------------------------')
 dataset = CIFAR10(root='./data/',
                   train=True,
                   download=True,
                   transform=transform)
 
 # Split dataset into train and validation sets.
-print(f'Number of samples in dataset: len(dataset)')
+print('---------------------------------------------')
+print(f'Number of samples in dataset: {len(dataset)}')
 train_dataset, val_dataset = random_split(dataset, [47500, 2500])
+print(f'Number of samples in train set: {len(train_dataset)}')
 
 # Create dataloaders for train set.
+batch_size = 64
 train_dataloader = DataLoader(train_dataset,
-                              batch_size=64,
+                              batch_size=batch_size,
                               shuffle=True,
                               num_workers=1)
+print(f'Batch size: {batch_size}')
 
 # Select the GPU for training.
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f'Device: {device}')
+print('---------------------------------------------')
 
 # Define a model and move it to GPU.
 # model = torch.nn.Sequential(
@@ -85,7 +91,8 @@ for i, (images, labels) in enumerate(train_dataloader):
 total_transfer_time = sum(transfer_times)
 total_batches = len(transfer_times)
 avg_transfer_time = total_transfer_time / total_batches
-print(f"Average time for transferring one batch from CPU to GPU:"
-      f" {avg_transfer_time:.4f} ms")
-print(f"Total time for transferring {total_batches} batches from CPU to GPU:"
-      f" {(total_transfer_time/1000.0):.4f} s")
+print(f'Average time for transferring one batch from CPU to GPU:'
+      f' {avg_transfer_time:.4f} ms')
+print(f'Total time for transferring {total_batches} batches from CPU to GPU:'
+      f' {(total_transfer_time/1000.0):.4f} s')
+print('---------------------------------------------')
