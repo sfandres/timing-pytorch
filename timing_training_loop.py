@@ -30,6 +30,12 @@ def main(args):
     print(f"Batch size: {args.batch_size}")
     print(f"Workers:    {args.num_workers}")
 
+    # Set the random seed for PyTorch and NumPy.
+    # torch.manual_seed(0)
+    # torch.backends.cudnn.deterministic = True
+    # torch.backends.cudnn.benchmark = False
+    # np.random.seed(0)
+
     # Check torch CUDA
     print(f"\n{'torch.cuda.is_available():'.ljust(32)}"
       f"{torch.cuda.is_available()}")
@@ -49,12 +55,6 @@ def main(args):
           f"{len(os.sched_getaffinity(0))}")
     print(f"{'os.cpu_count():'.ljust(32)}"
           f"{os.cpu_count()}\n")
-
-    # Set the random seed for PyTorch and NumPy.
-    torch.manual_seed(0)
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
-    np.random.seed(0)
 
     # Set device (GPU if available, else CPU).
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
