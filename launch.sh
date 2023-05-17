@@ -4,11 +4,12 @@
 
 ## Resource request.
 #SBATCH --nodes=1                                   ## Number of nodes.
-#SBATCH --ntasks=4                                  ## Number of tasks.
-#SBATCH --ntasks-per-node=4                         ## Number of tasks to be invoked on each node.
-#SBATCH --cpus-per-task=1                           ## Number of cpu-cores per task (>1 if multi-threaded tasks).
-#SBATCH --threads-per-core=1                        ## Restrict node selection to nodes with at least the specified number of threads per core.
+##SBATCH --ntasks=1                                 ## Number of tasks.
+#SBATCH --ntasks-per-node=6                         ## Number of tasks to be invoked on each node.
+#SBATCH --mem-per-cpu=4G
+#SBATCH --cpus-per-task=6                           ## Number of cpu-cores per task (>1 if multi-threaded tasks).
 ##SBATCH --cpus-per-gpu=4                           ## Number of cpu-cores per task (>1 if multi-threaded tasks).
+#SBATCH --threads-per-core=1                        ## Restrict node selection to nodes with at least the specified number of threads per core.
 #SBATCH --gpus-per-node=1                           ## Min. number of GPUs on each node.
 #SBATCH --mem=0                                     ## Real memory required per node (0: request all the memory on a node).
 #SBATCH --exclusive                                 ## Job allocation can not share nodes with other running jobs.
