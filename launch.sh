@@ -8,8 +8,6 @@
 #SBATCH --ntasks-per-node=1                         ## Number of tasks to be invoked on each node.
 #SBATCH --cpus-per-task=8                           ## Number of cpu-cores per task (>1 if multi-threaded tasks).
 #SBATCH --gpus-per-node=1                           ## Number of GPUs on each node (Sergio: 4).
-#SBATCH --job-name=timing_%A                        ## Name of the job.
-#SBATCH --output=timing_%A                          ## Output file.
 #SBATCH --mail-type=ALL                             ## (not working) Type of notification via email.
 #SBATCH --mail-user=sfandres@unex.es                ## (not working) User to receive the email notification.
 
