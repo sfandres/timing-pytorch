@@ -19,6 +19,7 @@ from torchvision.models import resnet18
 import numpy as np
 import argparse
 import sys
+import os
 import time
 
 
@@ -28,6 +29,26 @@ def main(args):
     print(f"Epochs:     {args.epochs}")
     print(f"Batch size: {args.batch_size}")
     print(f"Workers:    {args.num_workers}")
+
+    # Check torch CUDA
+    print(f"\n{'torch.cuda.is_available():'.ljust(32)}"
+      f"{torch.cuda.is_available()}")
+    print(f"{'torch.cuda.device_count():'.ljust(32)}"
+        f"{torch.cuda.device_count()}")
+    print(f"{'torch.cuda.current_device():'.ljust(32)}"
+        f"{torch.cuda.current_device()}")
+    print(f"{'torch.cuda.device(0):'.ljust(32)}"
+        f"{torch.cuda.device(0)}")
+    print(f"{'torch.cuda.get_device_name(0):'.ljust(32)}"
+        f"{torch.cuda.get_device_name(0)}")
+    print(f"{'torch.backends.cudnn.benchmark:'.ljust(32)}"
+        f"{torch.backends.cudnn.benchmark}")
+
+    # Check CPUs available (for num_workers).
+    print(f"\n{'os.sched_getaffinity:'.ljust(32)}"
+          f"{len(os.sched_getaffinity(0))}")
+    print(f"{'os.cpu_count():'.ljust(32)}"
+          f"{os.cpu_count()}\n")
 
     # Set the random seed for PyTorch and NumPy.
     torch.manual_seed(0)
@@ -58,13 +79,9 @@ def main(args):
     testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform_test)
     testloader = torch.utils.data.DataLoader(testset, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
 
-    # Display the sizes of the datasets.
-    print(f"Training dataset size: {len(trainset)}")
-    print(f"Testing dataset size:  {len(testset)}")
-
-    # Calculate the number of batches for training and testing datasets.
+    # Display the size of the training dataset.
+    print(f"\nTraining dataset size: {len(trainset)}")
     print(f"Number of batches in the training dataset: {len(trainloader)}")
-    print(f"Number of batches in the testing dataset:  {len(testloader)}")
 
     # Load the ResNet-18 model.
     model = resnet18(weights=None)
@@ -92,7 +109,7 @@ def main(args):
 
             running_loss += loss.item()
             if i % 200 == 199:    # Print average loss every 200 mini-batches.
-                print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 200))
+                print('[%2d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 200))
                 running_loss = 0.0
 
     end_time = time.time()
@@ -102,6 +119,8 @@ def main(args):
     # Evaluation loop.
     correct = 0
     total = 0
+    print(f"\nTesting dataset size:  {len(testset)}")
+    print(f"Number of batches in the testing dataset:  {len(testloader)}")
     with torch.no_grad():
         for data in testloader:
             images, labels = data[0].to(device), data[1].to(device)
@@ -123,7 +142,7 @@ if __name__ == "__main__":
     )
 
     parser.add_argument('--epochs', '-e', type=int, default=5,
-                        help='number of epochs for training (default: 5).')
+                        help='number of epochs for training (default: 10).')
 
     parser.add_argument('--batch_size', '-b', type=int, default=64,
                         help='number of images in a batch during training '

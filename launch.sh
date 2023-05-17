@@ -22,7 +22,7 @@ echo " " | /usr/bin/mail -s "Sbatch ${email_info} began" sfandres@unex.es
 
 ## Load virtual environment.
 source /p/project/joaiml/hetgrad/anaconda3/etc/profile.d/conda.sh
-conda activate lulc2-conda
+conda activate lulc-conda
 
 ## Execute the Python script and pass the arguments.
 echo "srun python3 timing_training_loop.py "$@""
