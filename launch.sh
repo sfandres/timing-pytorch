@@ -7,7 +7,7 @@
 #SBATCH --ntasks=1                                  ## Number of tasks.
 #SBATCH --ntasks-per-node=1                         ## Number of tasks to be invoked on each node.
 #SBATCH --cpus-per-task=4                           ## Number of cpu-cores per task (>1 if multi-threaded tasks).
-##SBATCH --cpus-per-gpu=6                           ## Number of cpu-cores per task (>1 if multi-threaded tasks).
+##SBATCH --cpus-per-gpu=4                           ## Number of cpu-cores per task (>1 if multi-threaded tasks).
 #SBATCH --threads-per-core=1                        ## Restrict node selection to nodes with at least the specified number of threads per core.
 #SBATCH --gpus-per-node=1                           ## Min. number of GPUs on each node.
 #SBATCH --mem=0                                     ## Real memory required per node (0: request all the memory on a node).
@@ -30,8 +30,8 @@ source /p/project/joaiml/hetgrad/anaconda3/etc/profile.d/conda.sh
 conda activate lulc2-conda
 
 ## Execute the Python script and pass the arguments.
-echo "srun torchrun timing_training_loop.py "$@""
-srun torchrun --nnodes=1 --nproc-per-node=1 timing_training_loop.py "$@"
+echo "srun python3 timing_training_loop.py "$@""
+srun python3 timing_training_loop.py "$@"
 
 ## Send email when job ends.
 echo " " | /usr/bin/mail -s "Sbatch ${email_info} ended" sfandres@unex.es
