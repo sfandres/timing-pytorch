@@ -31,7 +31,7 @@ conda activate lulc2-conda
 
 ## Execute the Python script and pass the arguments.
 echo "srun torchrun timing_training_loop.py "$@""
-srun torchrun --nnodes=1 --nproc-per-node=4 timing_training_loop.py "$@"
+srun torchrun --nnodes=1 --nproc-per-node=1 timing_training_loop.py "$@"
 
 ## Send email when job ends.
 echo " " | /usr/bin/mail -s "Sbatch ${email_info} ended" sfandres@unex.es
