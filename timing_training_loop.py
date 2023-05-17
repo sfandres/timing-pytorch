@@ -34,7 +34,6 @@ def main(args):
     # torch.manual_seed(0)
     # torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = True
-    torch.cuda.set_allow_growth(True)
     # np.random.seed(0)
 
     # Check torch CUDA
