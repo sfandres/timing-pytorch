@@ -34,6 +34,7 @@ def main(args):
     # torch.manual_seed(0)
     # torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = True
+    torch.cuda.set_allow_growth(True)
     # np.random.seed(0)
 
     # Check torch CUDA
@@ -57,7 +58,7 @@ def main(args):
           f"{os.cpu_count()}\n")
 
     # Set device (GPU if available, else CPU).
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("gpu:0" if torch.cuda.is_available() else "cpu")
 
     # Define the transformations for training and testing datasets.
     transform_train = transforms.Compose([
