@@ -33,7 +33,7 @@ def main(args):
     # Set the random seed for PyTorch and NumPy.
     # torch.manual_seed(0)
     # torch.backends.cudnn.deterministic = True
-    # torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.benchmark = True
     # np.random.seed(0)
 
     # Check torch CUDA
