@@ -12,8 +12,8 @@
 ##SBATCH --threads-per-core=1                       ## Restrict node selection to nodes with at least the specified number of threads per core.
 #SBATCH --gpus-per-node=1                           ## Min. number of GPUs on each node.
 #SBATCH --mem=4G                                    ## Real memory required per node (0: request all the memory on a node).
-#SBATCH --job-name=timing_%A                        ## Name of the job.
-#SBATCH --output=timing_%A.out                      ## Output file.
+#SBATCH --job-name=timing_%j                        ## Name of the job.
+#SBATCH --output=timing_%j.out                      ## Output file.
 #SBATCH --exclusive                                 ## Job allocation can not share nodes with other running jobs.
 #SBATCH --mail-type=ALL                             ## Type of notification via email.
 #SBATCH --mail-user=sfandres@unex.es                ## User to receive the email notification.
