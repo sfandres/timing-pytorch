@@ -3,7 +3,6 @@
 
 
 ## Resource request.
-#SBATCH --partition=dp-esb                          ## Request specific partition.
 #SBATCH --nodes=1                                   ## Number of nodes.
 #SBATCH --ntasks=1                                  ## Number of tasks.
 #SBATCH --ntasks-per-node=1                         ## Number of tasks to be invoked on each node.
