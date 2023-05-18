@@ -23,6 +23,7 @@ import os
 import time
 
 
+# @profile
 def main(args):
 
     # Print the arguments.
@@ -31,11 +32,11 @@ def main(args):
     print(f"Workers:    {args.num_workers}")
 
     # Set the random seed for PyTorch and NumPy.
-    # torch.manual_seed(0)
-    # torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = True
-    torch.set_num_threads(args.num_workers)
-    # np.random.seed(0)
+    torch.manual_seed(0)
+    torch.backends.cudnn.deterministic = True
+    # torch.backends.cudnn.benchmark = True
+    # torch.set_num_threads(args.num_workers)
+    np.random.seed(0)
 
     # Check torch CUDA
     print(f"\n{'torch.cuda.is_available():'.ljust(32)}"
