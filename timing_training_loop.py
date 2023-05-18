@@ -23,7 +23,7 @@ import os
 import time
 
 
-# @profile
+@profile
 def main(args):
 
     # Print the arguments.

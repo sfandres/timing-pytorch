@@ -42,7 +42,8 @@ conda activate lulc2-conda
 ## echo "OMP_NUM_THREADS:      $OMP_NUM_THREADS"
 
 ## Execute the Python script and pass the arguments.
-command="python3 timing_training_loop.py "$@""
+## command="python3 timing_training_loop.py "$@""
+command="kernprof -l timing_training_loop.py "$@""
 echo "Executed command: $command"
 echo ""
 srun $command
