@@ -17,21 +17,32 @@
 
 
 ## Catch Slurm environment variables.
-job_id=${SLURM_JOB_ID}
+job_id=$SLURM_JOB_ID
 
 ## Create a string for email subject.
-email_info="job_id=${job_id}"
+email_info="job_id=$job_id"
 
 ## Send email when job begin (two options).
-echo " " | /usr/bin/mail -s "Sbatch ${email_info} began" sfandres@unex.es
+## echo " " | /usr/bin/mail -s "Sbatch $email_info began" sfandres@unex.es
 
 ## Load virtual environment.
 source /p/project/joaiml/hetgrad/anaconda3/etc/profile.d/conda.sh
 conda activate lulc2-conda
 
+## Juelich configuration.
+export CUDA_VISIBLE_DEVICES="0"
+export OMP_NUM_THREADS=1
+if [ "$SLURM_CPUS_PER_TASK" > 0 ] ; then
+    export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+fi
+echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
+echo "OMP_NUM_THREADS:      $OMP_NUM_THREADS"
+
 ## Execute the Python script and pass the arguments.
-echo "srun python3 timing_training_loop.py "$@""
-srun python3 timing_training_loop.py "$@"
+command="python3 timing_training_loop.py "$@""
+echo "Executed command:     $command"
+echo ""
+srun $command
 
 ## Send email when job ends.
-echo " " | /usr/bin/mail -s "Sbatch ${email_info} ended" sfandres@unex.es
+## echo " " | /usr/bin/mail -s "Sbatch $email_info ended" sfandres@unex.es
