@@ -6,7 +6,7 @@
 #SBATCH --nodes=1                                   ## Number of nodes.
 #SBATCH --ntasks=1                                  ## Number of tasks.
 #SBATCH --ntasks-per-node=1                         ## Number of tasks to be invoked on each node.
-#SBATCH --cpus-per-task=2                           ## Number of cpu-cores per task (>1 if multi-threaded tasks).
+#SBATCH --cpus-per-task=1                           ## Number of cpu-cores per task (>1 if multi-threaded tasks).
 #SBATCH --time=00:10:00                             ## Job duration.
 ##SBATCH --cpus-per-gpu=1                           ## Number of cpu-cores per task (>1 if multi-threaded tasks).
 ##SBATCH --threads-per-core=1                       ## Restrict node selection to nodes with at least the specified number of threads per core.
@@ -42,8 +42,8 @@ conda activate lulc2-conda
 ## echo "OMP_NUM_THREADS:      $OMP_NUM_THREADS"
 
 ## Execute the Python script and pass the arguments.
-## command="python3 timing_training_loop.py "$@""
-command="kernprof -l timing_training_loop.py "$@""
+## command="kernprof -l timing_training_loop.py "$@""  ## include @profile in code.
+command="python3 timing_training_loop.py "$@""
 echo "Executed command: $command"
 echo ""
 srun $command
