@@ -30,7 +30,7 @@ email_info="job_id=$job_id"
 
 ## Load virtual environment.
 source /p/project/joaiml/hetgrad/anaconda3/etc/profile.d/conda.sh
-conda activate lulc2-conda
+conda activate pytorch-timing-conda
 
 ## Juelich configuration.
 ## export CUDA_VISIBLE_DEVICES=0
