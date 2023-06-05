@@ -23,5 +23,5 @@ Remember to change the option `#SBATCH --cpus-per-task=X` in [launch.sh](launch.
 * Localhost:
 ```
 conda activate pytorch-timing-conda
-python3 python3 timing_training_loop.py -e 5 -b 64 -w 4
+python3 timing_training_loop.py -e 5 -b 64 -w 4
 ```
