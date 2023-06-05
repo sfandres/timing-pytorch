@@ -13,6 +13,7 @@ conda env create -f environment.yml
 ```
 
 ### Usage
+The [timing_training_loop.py](timing_training_loop.py) measures the runtime of the training loop. It can be executed as follows:
 
 * Under the Slurm cluster manager:
 ```
