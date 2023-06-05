@@ -1,4 +1,5 @@
 # pytorch-timing
+This repository has been created for timing purposes of PyTorch scripts running on a cluster.
 
 ## Getting started
 
