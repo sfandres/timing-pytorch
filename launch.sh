@@ -29,7 +29,7 @@ email_info="job_id=$job_id"
 ## echo " " | /usr/bin/mail -s "Sbatch $email_info began" sfandres@unex.es
 
 ## Load virtual environment.
-source /p/project/joaiml/hetgrad/anaconda3/etc/profile.d/conda.sh
+source ~/anaconda3/etc/profile.d/conda.sh
 conda activate pytorch-timing-conda
 
 ## Juelich configuration.
