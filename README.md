@@ -1,5 +1,5 @@
-# pytorch-timing-example
-This repository has been created for timing purposes of PyTorch scripts running on a cluster.
+# Timing PyTorch on clusters
+This repository has been created for timing purposes to run PyTorch scripts on a cluster.
 
 ## Getting started
 
